@@ -12,5 +12,5 @@ This is a Dockerfile for the hack described in https://blog.thesen.eu/aktuellen-
 ```
 git clone https://github.com/sejnub/docker-amazon-dash-sniff.git
 cd docker-amazon-dash-sniff 
-docker build -t amazon-dash-sniff .
+docker build -t sejnub/amazon-dash-sniff .
 ```
