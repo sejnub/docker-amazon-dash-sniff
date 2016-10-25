@@ -1,6 +1,6 @@
 FROM resin/rpi-raspbian:jessie-20160831  
 
-RUN apt-get -qy install scapy && \
+RUN apt-get -qy install python-scapy && \
     apt-get -qy install tcpdump
     
 COPY dash.py /usr/local/bin
