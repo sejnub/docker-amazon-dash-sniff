@@ -5,4 +5,5 @@ RUN apt-get -qy install scapy && \
     
 COPY dash.py /usr/local/bin
 
-python /usr/local/bin/dash.py
+ /usr/local/bin/dash.py
+CMD ["python", "/usr/local/bin/dash.py"] 
