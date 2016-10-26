@@ -16,3 +16,13 @@ git clone https://github.com/sejnub/docker-amazon-dash-sniff.git
 cd docker-amazon-dash-sniff 
 docker build -t sejnub/amazon-dash-sniff .
 ```
+
+To run it for test purposes with attached console:
+```
+docker run -it sejnub/amazon-dash-sniff /bin/bash
+```
+
+To run it for production:
+```
+docker run -d sejnub/amazon-dash-sniff
+```
