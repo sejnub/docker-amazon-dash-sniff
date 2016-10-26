@@ -31,3 +31,11 @@ To run it for production:
 ```
 docker run -d sejnub/amazon-dash-sniff
 ```
+
+## Push it
+
+To push it to hub.docker.com:
+```
+docker login
+docker push sejnub/amazon-dash-sniff
+```
