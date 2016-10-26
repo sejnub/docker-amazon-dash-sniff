@@ -1,4 +1,4 @@
-# docker-amazon-dash-sniff
+# amazon-dash-sniff
 
 Image on hub.docker: https://hub.docker.com/r/sejnub/amazon-dash-sniff/
 
