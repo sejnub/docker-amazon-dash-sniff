@@ -1,5 +1,7 @@
 # docker-amazon-dash-sniff
 
+Image on hub.docker: https://hub.docker.com/r/sejnub/amazon-dash-sniff/
+
 Prepare rpi as described in http://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/
 
 To test: 
