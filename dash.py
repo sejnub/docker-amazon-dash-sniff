@@ -30,7 +30,9 @@ def udp_filter(pkt):
 mac_to_action = {'df:13:23:d2:2d:22' : button_pressed_dash2 , 'df:13:23:d2:2d:11' : button_pressed_dash1}
 mac_id_list = list(mac_to_action.keys())
  
+print "Running dash.py version 3"
 print "Waiting for an amazon dash button to register to the network ..."
+
 sniff(prn=udp_filter, store=0, filter="udp", lfilter=lambda d: d.src in mac_id_list)
  
 if __name__ == "__main__":
