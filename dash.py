@@ -1,8 +1,6 @@
 import datetime
 import logging
-
 import urllib
-
 import urllib2
  
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
@@ -40,7 +38,6 @@ if __name__ == "__main__":
 
   
   
-  
 # python 2.7  
 # import urllib
 # import urllib2
@@ -54,21 +51,6 @@ if __name__ == "__main__":
 # req = urllib2.Request(url, data)
 # response = urllib2.urlopen(req)
 # the_page = response.read()  
-  
 
- 
-# From https://docs.python.org/3/library/urllib.request.html#module-urllib.request
-# 
-# The following code is python 3 (not compatible to the python 2 standard library)
-# so it can't be used.
-#
-# The following example uses the POST method instead. Note that params output from urlencode 
-# is encoded to bytes before it is sent to urlopen as data:
-#
-# import urllib.request
-# import urllib.parse
-# data = urllib.parse.urlencode({'spam': 1, 'eggs': 2, 'bacon': 0})
-# data = data.encode('ascii')
-# with urllib.request.urlopen("http://requestb.in/xrbl82xr", data) as f:
-#     print(f.read().decode('utf-8'))
-#  
+
+# eof
