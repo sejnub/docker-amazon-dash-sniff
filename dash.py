@@ -1,7 +1,5 @@
 import datetime
 import logging
-import urllib.request
-import urllib.parse
  
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
@@ -36,10 +34,30 @@ sniff(prn=udp_filter, store=0, filter="udp", lfilter=lambda d: d.src in mac_id_l
 if __name__ == "__main__":
   main()
 
+  
+  
+  
+# python 2.7  
+# import urllib
+# import urllib2
 
+# url = 'http://www.someserver.com/cgi-bin/register.cgi'
+# values = {'name' : 'Michael Foord',
+#           'location' : 'Northampton',
+#           'language' : 'Python' }
+# 
+# data = urllib.urlencode(values)
+# req = urllib2.Request(url, data)
+# response = urllib2.urlopen(req)
+# the_page = response.read()  
+  
+
+ 
 # From https://docs.python.org/3/library/urllib.request.html#module-urllib.request
 # 
 # The following code is python 3 (not compatible to the python 2 standard library)
+# so it can't be used.
+#
 # The following example uses the POST method instead. Note that params output from urlencode 
 # is encoded to bytes before it is sent to urlopen as data:
 #
