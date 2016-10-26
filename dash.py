@@ -1,5 +1,9 @@
 import datetime
 import logging
+
+import urllib
+
+import urllib2
  
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
