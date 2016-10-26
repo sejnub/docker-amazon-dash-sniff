@@ -39,6 +39,7 @@ if __name__ == "__main__":
 
 # From https://docs.python.org/3/library/urllib.request.html#module-urllib.request
 # 
+# The following code is python 3 (not compatible to the python 2 standard library)
 # The following example uses the POST method instead. Note that params output from urlencode 
 # is encoded to bytes before it is sent to urlopen as data:
 #
