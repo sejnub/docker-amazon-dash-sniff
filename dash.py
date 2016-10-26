@@ -33,4 +33,17 @@ sniff(prn=udp_filter, store=0, filter="udp", lfilter=lambda d: d.src in mac_id_l
  
 if __name__ == "__main__":
   main()
-  
+
+
+# From https://docs.python.org/3/library/urllib.request.html#module-urllib.request
+# 
+# The following example uses the POST method instead. Note that params output from urlencode 
+# is encoded to bytes before it is sent to urlopen as data:
+#
+# import urllib.request
+# import urllib.parse
+# data = urllib.parse.urlencode({'spam': 1, 'eggs': 2, 'bacon': 0})
+# data = data.encode('ascii')
+# with urllib.request.urlopen("http://requestb.in/xrbl82xr", data) as f:
+#     print(f.read().decode('utf-8'))
+#  
