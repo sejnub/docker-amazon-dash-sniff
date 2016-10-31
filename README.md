@@ -24,12 +24,12 @@ docker build -t sejnub/amazon-dash-sniff .
 
 To run it for test purposes with attached console:
 ```
-docker run -it sejnub/amazon-dash-sniff /bin/bash
+docker run --host -it sejnub/amazon-dash-sniff /bin/bash
 ```
 
 To run it for production:
 ```
-docker run -d sejnub/amazon-dash-sniff
+docker run --host -d sejnub/amazon-dash-sniff
 ```
 
 ## Push it
