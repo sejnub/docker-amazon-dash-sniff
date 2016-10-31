@@ -7,15 +7,15 @@ logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
  
 def button_pressed_dash1():
-  current_time = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
+  current_time = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
   print 'Dash button somat-1 pressed at ' + current_time
 
 def button_pressed_dash2():
-  current_time = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
+  current_time = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
   print 'Dash button ariel-1 pressed at ' + current_time
  
 def button_pressed_dash3():
-  current_time = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
+  current_time = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
   print 'Dash button caffe-1 pressed at ' + current_time
  
 def udp_filter(pkt):
