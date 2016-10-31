@@ -8,15 +8,15 @@ from scapy.all import *
  
 def button_pressed_dash1():
   current_time = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-  print 'Dash button 1 pressed at ' + current_time
+  print 'Dash button somat-1 pressed at ' + current_time
 
 def button_pressed_dash2():
   current_time = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-  print 'Dash button 2 pressed at ' + current_time
+  print 'Dash button ariel-1 pressed at ' + current_time
  
 def button_pressed_dash3():
   current_time = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-  print 'Dash button 3 pressed at ' + current_time
+  print 'Dash button caffe-1 pressed at ' + current_time
  
 def udp_filter(pkt):
   options = pkt[DHCP].options
@@ -27,7 +27,9 @@ def udp_filter(pkt):
        mac_to_action[pkt.src]()
        break
  
-mac_to_action = {'df:13:23:d2:2d:22' : button_pressed_dash2 , 'df:13:23:d2:2d:11' : button_pressed_dash1}
+mac_to_action = {'ac:63:be:e3:3c:64' : button_pressed_dash1, 
+                 'ac:63:be:44:51:b3' : button_pressed_dash2, 
+                 'ac:63:be:a3:5c:03' : button_pressed_dash3}
 mac_id_list = list(mac_to_action.keys())
  
 print "Running dash.py version 3"
