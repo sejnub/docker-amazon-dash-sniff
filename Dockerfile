@@ -5,7 +5,8 @@ RUN apt-get -qy update && \
     apt-get -qy install tcpdump && \
     apt-get -qy install tcpreplay # really necessary?
     
-COPY dash.py /usr/local/bin
+COPY dash1.py /usr/local/bin
+COPY dash2.py /usr/local/bin
 
 
 CMD ["python", "/usr/local/bin/dash.py"] 
