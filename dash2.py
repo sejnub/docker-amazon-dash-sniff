@@ -8,8 +8,8 @@ from scapy.all import *
 
 def arp_display(pkt):
   if pkt[ARP].op == 1: #who-has (request)
-    if pkt[ARP].hwsrc == 'ac:63:be:a3:5c:0': # button 1
-        print "Pushed Ariel"
+    if pkt[ARP].hwsrc == 'ac:63:be:a3:5c:03': # button 1
+        print "Pushed Coffee"
     else:
         print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
 
