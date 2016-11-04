@@ -18,7 +18,7 @@ def arp_display(pkt):
         print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
 
 
-print "Running dash2.py version 5
+print "Running dash2.py version 5"
 print "Waiting for an amazon dash button to register to the network ..."
 
 sniff(prn=arp_display, filter="arp", store=0, count=0)
