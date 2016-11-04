@@ -46,7 +46,7 @@ mac_to_action = {'ac:63:be:e3:3c:64' : button_pressed_dash1,
                 }
 mac_id_list = list(mac_to_action.keys())
  
-print "Running dash.py version 3"
+print "Running dash.py version 4"
 print "Waiting for an amazon dash button to register to the network ..."
 
 sniff(prn=udp_filter, store=0, filter="udp", lfilter=lambda d: d.src in mac_id_list)
