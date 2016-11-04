@@ -15,8 +15,8 @@ def arp_display(pkt):
         print "Pushed ariel-1"
       if pkt[ARP].hwsrc == 'ac:63:be:e3:3c:64': # button 1
         print "Pushed somat-1"
-      else:
-        print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
+      #else:
+        #print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
 
 
 print "Running dash2.py version 5"
