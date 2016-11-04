@@ -9,4 +9,4 @@ COPY dash1.py /usr/local/bin
 COPY dash2.py /usr/local/bin
 
 
-CMD ["python", "/usr/local/bin/dash1.py"] 
+CMD ["python", "/usr/local/bin/dash2.py"] 
