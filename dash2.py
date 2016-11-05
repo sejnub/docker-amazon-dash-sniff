@@ -12,11 +12,11 @@ def arp_display(pkt):
   if pkt.haslayer(ARP):
     if pkt[ARP].op == 1: #who-has (request)
       if pkt[ARP].hwsrc == 'ac:63:be:a3:5c:03': 
-        button = 'caffe-1'
+        button = 'Caffe1'
       elif pkt[ARP].hwsrc == 'ac:63:be:44:51:b3': 
-        button = 'ariel-1'
+        button = 'Ariel1'
       elif pkt[ARP].hwsrc == 'ac:63:be:e3:3c:64': 
-        button = 'somat-1'
+        button = 'Somat1'
       elif pkt[ARP].hwsrc == 'f8:1a:67:25:36:3a': 
         button = 'strange-device'
       else:
@@ -32,6 +32,13 @@ def arp_display(pkt):
   else:
     print " "
     print "Pushed button: " + button
+
+    url = 'http://192.168.178.31:8083/fhem?cmd=set%20DashButton' + button + '%20press'
+    values = {}
+    data = urllib.urlencode(values)
+    req = urllib2.Request(url, data)
+    response = urllib2.urlopen(req)
+    the_page = response.read()  
     
 
 print "Running dash2.py version 5"
@@ -47,7 +54,13 @@ if __name__ == "__main__":
 # import urllib
 # import urllib2
 
-# url = 'http://www.someserver.com/cgi-bin/register.cgi'
+url = 'http://192.168.178.31:8083/fhem?cmd=set%20DashButton' + button + '%20press'
+values = {}
+data = urllib.urlencode(values)
+req = urllib2.Request(url, data)
+response = urllib2.urlopen(req)
+the_page = response.read()  
+
 # values = {'name' : 'Michael Foord',
 #           'location' : 'Northampton',
 #           'language' : 'Python' }
