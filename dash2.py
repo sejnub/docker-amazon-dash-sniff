@@ -8,7 +8,7 @@ logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
 
 def arp_display(pkt):
-  button = 'no-button'
+  button = 'no-arp-op-1'
   if pkt.haslayer(ARP):
     if pkt[ARP].op == 1: #who-has (request)
       if pkt[ARP].hwsrc == 'ac:63:be:a3:5c:03': 
@@ -20,13 +20,14 @@ def arp_display(pkt):
       else:
         button = 'unknown'
         
-  if button == 'unknown':
-    #print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
+  if button == 'no-arp-op-1':
     sys.stdout.write('.')
+  if button == 'unknown':
+    print " "
+    print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
   else:
     print " "
     print "Pushed button: " + button
-    print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
     
 
 print "Running dash2.py version 5"
