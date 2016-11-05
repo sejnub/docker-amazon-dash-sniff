@@ -25,12 +25,12 @@ def arp_display(pkt):
         button = 'unknown'
   
   if button == 'no-arp-op-1':
-    sys.stdout.write('.')
+    #sys.stdout.write('.')
   elif button == 'strange-device':
-    sys.stdout.write(',')
+    #sys.stdout.write(',')
   elif button == 'unknown':
-    print " "
-    print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
+    #print " "
+    #print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
   else:
     print " "
     print "Pushed button: " + button
@@ -44,12 +44,6 @@ def arp_display(pkt):
     base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
     request.add_header("Authorization", "Basic %s" % base64string)
     response = urllib2.urlopen(request)    
-    
-    #url = 'http://192.168.178.31:8083/fhem?cmd=set%20DashButton' + button + '%20press'
-    #values = {}
-    #data = urllib.urlencode(values)
-    #req = urllib2.Request(url, data)
-    #response = urllib2.urlopen(req)
     the_page = response.read()  
     
 
@@ -60,27 +54,5 @@ sniff(prn=arp_display, filter="arp", store=0, count=0)
 
 if __name__ == "__main__":
   main()
-
-  
-# python 2.7  
-# import urllib
-# import urllib2
-
-url = 'http://<username>:<password>@192.168.178.31:8083/fhem?cmd=set%20DashButton' + button + '%20press'
-values = {}
-data = urllib.urlencode(values)
-req = urllib2.Request(url, data)
-response = urllib2.urlopen(req)
-the_page = response.read()  
-
-# values = {'name' : 'Michael Foord',
-#           'location' : 'Northampton',
-#           'language' : 'Python' }
-# 
-# data = urllib.urlencode(values)
-# req = urllib2.Request(url, data)
-# response = urllib2.urlopen(req)
-# the_page = response.read()  
-
 
 # eof  
