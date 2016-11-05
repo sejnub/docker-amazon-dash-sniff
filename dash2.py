@@ -2,6 +2,7 @@ import datetime
 import logging
 import urllib
 import urllib2
+import sys
 
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
@@ -21,7 +22,7 @@ def arp_display(pkt):
         
   if button == 'unknown':
     #print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
-    sys.stdout.write "."
+    sys.stdout.write('.')
   else:
     print ""
     print "Pushed button: " + button
