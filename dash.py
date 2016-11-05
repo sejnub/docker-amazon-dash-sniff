@@ -25,10 +25,11 @@ def arp_display(pkt):
         button = 'unknown'
   
   if button == 'no-arp-op-1':
-    #sys.stdout.write('.')
+    sys.stdout.write('.')
   elif button == 'strange-device':
-    #sys.stdout.write(',')
+    sys.stdout.write(',')
   elif button == 'unknown':
+    sys.stdout.write(';')
     #print " "
     #print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
   else:
