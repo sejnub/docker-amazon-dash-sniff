@@ -17,6 +17,8 @@ def arp_display(pkt):
         button = 'ariel-1'
       if pkt[ARP].hwsrc == 'ac:63:be:e3:3c:64': 
         button = 'somat-1'
+      if pkt[ARP].hwsrc == 'f8:1a:67:25:36:3a': 
+        button = 'strange-device'
       else:
         button = 'unknown'
         
