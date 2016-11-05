@@ -24,8 +24,9 @@ def arp_display(pkt):
     #print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
     sys.stdout.write('.')
   else:
-    print ""
+    print " "
     print "Pushed button: " + button
+    print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
     
 
 print "Running dash2.py version 5"
