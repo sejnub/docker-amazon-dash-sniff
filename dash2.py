@@ -7,6 +7,7 @@ logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
 
 def arp_display(pkt):
+  button = 'no-button'
   if pkt.haslayer(ARP):
     if pkt[ARP].op == 1: #who-has (request)
       if pkt[ARP].hwsrc == 'ac:63:be:a3:5c:03': 
