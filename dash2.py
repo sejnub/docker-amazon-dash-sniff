@@ -3,6 +3,8 @@ import logging
 import urllib
 import urllib2
 import sys
+import base64
+
 
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
@@ -33,11 +35,21 @@ def arp_display(pkt):
     print " "
     print "Pushed button: " + button
 
+    
+ 
+    username = "<username>"
+    password = "<password>"
     url = 'http://192.168.178.31:8083/fhem?cmd=set%20DashButton' + button + '%20press'
-    values = {}
-    data = urllib.urlencode(values)
-    req = urllib2.Request(url, data)
-    response = urllib2.urlopen(req)
+    request = urllib2.Request(url)
+    base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
+    request.add_header("Authorization", "Basic %s" % base64string)
+    response = urllib2.urlopen(request)    
+    
+    #url = 'http://192.168.178.31:8083/fhem?cmd=set%20DashButton' + button + '%20press'
+    #values = {}
+    #data = urllib.urlencode(values)
+    #req = urllib2.Request(url, data)
+    #response = urllib2.urlopen(req)
     the_page = response.read()  
     
 
