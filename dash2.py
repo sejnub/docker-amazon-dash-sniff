@@ -10,15 +10,15 @@ def arp_display(pkt):
   if pkt.haslayer(ARP):
     if pkt[ARP].op == 1: #who-has (request)
       if pkt[ARP].hwsrc == 'ac:63:be:a3:5c:03': 
-        button = "caffe-1"
+        button = 'caffe-1'
       if pkt[ARP].hwsrc == 'ac:63:be:44:51:b3': 
-        button = "ariel-1"
+        button = 'ariel-1'
       if pkt[ARP].hwsrc == 'ac:63:be:e3:3c:64': 
-        button = "somat-1"
+        button = 'somat-1'
       else:
-        button = "unknown"
+        button = 'unknown'
         
-  if button == "unknown"
+  if button == 'unknown'
     print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
   else:
     print "Pushed button: " + button
