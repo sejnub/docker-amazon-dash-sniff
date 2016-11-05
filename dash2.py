@@ -54,7 +54,7 @@ if __name__ == "__main__":
 # import urllib
 # import urllib2
 
-url = 'http://192.168.178.31:8083/fhem?cmd=set%20DashButton' + button + '%20press'
+url = 'http://<username>:<password>@192.168.178.31:8083/fhem?cmd=set%20DashButton' + button + '%20press'
 values = {}
 data = urllib.urlencode(values)
 req = urllib2.Request(url, data)
