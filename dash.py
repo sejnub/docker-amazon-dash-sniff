@@ -13,7 +13,7 @@ def arp_display(pkt):
   button = 'no-arp-op-1'
   if pkt.haslayer(ARP):
     if pkt[ARP].op == 1: #who-has (request)
-      if pkt[ARP].hwsrc == 'ac:63:be:a3:5c:03': 
+      if   pkt[ARP].hwsrc == 'ac:63:be:a3:5c:03': 
         button = 'Caffe1'
       elif pkt[ARP].hwsrc == 'ac:63:be:44:51:b3': 
         button = 'Ariel1'
@@ -34,13 +34,11 @@ def arp_display(pkt):
     #print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
   else:
     print " "
-    print "Pushed button: " + button
-
+    print "Pushed button: " + button 
     
- 
     username = "<username>"
     password = "<password>"
-    url = 'http://192.168.178.31:8083/fhem?cmd=set%20DashButton' + button + '%20press'
+    url = '<some url that contains the button variable>'
     request = urllib2.Request(url)
     base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
     request.add_header("Authorization", "Basic %s" % base64string)
