@@ -13,12 +13,35 @@ def arp_display(pkt):
   button = 'no-arp-op-1'
   if pkt.haslayer(ARP):
     if pkt[ARP].op == 1: #who-has (request)
-      if   pkt[ARP].hwsrc == 'ac:63:be:a3:5c:03': 
-        button = 'Caffe1'
+      
       elif pkt[ARP].hwsrc == 'ac:63:be:44:51:b3': 
         button = 'Ariel1'
+        
+      elif pkt[ARP].hwsrc == 'ac:63:be:1f:e7:fd': 
+        button = 'Bio1'
+      
+      elif pkt[ARP].hwsrc == '50:f5:da:07:64:71': 
+        button = 'Bio2'
+      
+      if   pkt[ARP].hwsrc == 'ac:63:be:a3:5c:03': 
+        button = 'Caffe1'
+        
+      elif pkt[ARP].hwsrc == '50:f5:da:de:d2:82': 
+        button = 'Finish1'
+      
+      elif pkt[ARP].hwsrc == 'ac:63:be:72:fa:13': 
+        button = 'Finish2'
+      
+      elif pkt[ARP].hwsrc == 'ac:63:be:17:1e:87': 
+        button = 'Kleenex1'
+      
+      elif pkt[ARP].hwsrc == 'ac:63:be:b8:17:39': 
+        button = 'Persil1'
+      
       elif pkt[ARP].hwsrc == 'ac:63:be:e3:3c:64': 
         button = 'Somat1'
+      
+      
       elif pkt[ARP].hwsrc == 'f8:1a:67:25:36:3a': 
         button = 'strange-device'
       else:
