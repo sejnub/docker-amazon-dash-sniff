@@ -39,3 +39,16 @@ To push it to hub.docker.com:
 docker login
 docker push sejnub/amazon-dash-sniff
 ```
+
+## clips
+
+```
+cd ..
+rm -rf docker-amazon-dash-sniff
+git clone https://github.com/sejnub/docker-amazon-dash-sniff.git
+cd docker-amazon-dash-sniff 
+docker build -t sejnub/amazon-dash-sniff .
+
+docker run --net host -it sejnub/amazon-dash-sniff /bin/bash
+
+```
