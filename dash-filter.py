@@ -85,7 +85,7 @@ def arp_display(pkt):
     the_page = response.read()
 
 
-print "Running dash2.py version 6"
+print "Running dash-filter.py version 6"
 print "Waiting for an amazon dash button to register to the network ..."
 
 sniff(prn=arp_display, filter="arp", store=0, count=0)
