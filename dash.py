@@ -5,14 +5,11 @@ import urllib
 import urllib2
 import sys
 import base64
-import datetime
-import time
 
 
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
 
-lastpress = {}
 
 def arp_display(pkt):
   button = 'no-arp-op-1'
@@ -61,17 +58,7 @@ def arp_display(pkt):
     #print " "
     #print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
   else:
-    if not lastpress.has_key(button):
-      print button, " was never pressed before."
-      print "lastpress: ", lastpress
-    else:
-      thistime = datetime.datetime.now()
-      lasttime = lastpress[button]
-      lastpress[button] = thistime
-      print button, " lasttime: ", lasttime 
-      print button, " thistime: ", thistime 
-      
-
+    print "Button ", button, " was pressed."
 
     username = "hbunjes"
     password = "gffubI00"
@@ -84,7 +71,7 @@ def arp_display(pkt):
     the_page = response.read()
 
 
-print "Running dash2.py version 6"
+print "Running dash2.py version 7"
 print "Waiting for an amazon dash button to register to the network ..."
 
 sniff(prn=arp_display, filter="arp", store=0, count=0)
