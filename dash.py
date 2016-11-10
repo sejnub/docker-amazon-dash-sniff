@@ -66,9 +66,10 @@ def arp_display(pkt):
     else:
       thistime = datetime.datetime.now()
       lasttime = lastpress[button]
+      lastpress[button] = thistime
       print button, " lasttime: ", lasttime 
       print button, " thistime: ", thistime 
-
+      
 
 
     username = "hbunjes"
