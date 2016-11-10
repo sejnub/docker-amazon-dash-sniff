@@ -11,6 +11,7 @@ import time
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
 
+# TODO: lastpress isnt a global var to the sniff function. It is always {}
 lastpress = {}
 
 def arp_display(pkt):
@@ -60,6 +61,7 @@ def arp_display(pkt):
     #print " "
     #print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
   else:
+    # TODO: lastpress isnt a global var to the sniff function. It is always {}
     if not lastpress.has_key(button):
       print button, " was never pressed before."
       print "lastpress: ", lastpress
