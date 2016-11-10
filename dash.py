@@ -63,6 +63,7 @@ def arp_display(pkt):
   else:
     if not lastpress.has_key(button):
       print button, " was never pressed before."
+      print "lastpress: ", lastpress
     else:
       thistime = datetime.datetime.now()
       lasttime = lastpress[button]
