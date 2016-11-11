@@ -15,11 +15,6 @@ from scapy.all import *
 # Constants
 timespan_threshhold = 15
 
-# The following values must be replaced by the actual values for this use case
-username = "<username>"
-password = "<passwd>"
-url      = '<some url which contains button>'
-
 
 # Global vars
 lastpress = {}
@@ -91,6 +86,11 @@ def arp_display(pkt):
       
 def trigger(button):
   print "Triggered: ", button
+  
+  # The following values must be replaced by the actual values for this use case
+  username = "<username>"
+  password = "<passwd>"
+  url      = '<some url which contains button>'
   
   request = urllib2.Request(url)
   base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
