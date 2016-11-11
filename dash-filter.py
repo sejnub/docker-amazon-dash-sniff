@@ -12,6 +12,11 @@ logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
 
 # TODO: lastpress isnt a global var to the sniff function. It is always {}
+
+# constants
+timespan_threshhold = 15
+
+# global vars
 lastpress = {}
 
 def arp_display(pkt):
@@ -70,7 +75,7 @@ def arp_display(pkt):
       print button, " was pressed before at ", lasttime
       timespan = thistime - lasttime
       print "timespan = ", timespan
-      if timespan > ???:
+      if timespan.total_seconds() > timespan_threshhold:
         trigger(button)
     else:
       print button, " was never pressed before."
