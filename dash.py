@@ -62,7 +62,7 @@ def arp_display(pkt):
 
     username = "<username>"
     password = "<password>"
-    url = '<something with button>'
+    url = '<url>'
 
     request = urllib2.Request(url)
     base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
