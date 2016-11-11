@@ -49,6 +49,6 @@ git clone https://github.com/sejnub/docker-amazon-dash-sniff.git
 cd docker-amazon-dash-sniff 
 docker build -t sejnub/amazon-dash-sniff .
 
-docker rm -f sejnub/amazon-dash-sniff; docker run --net host -it sejnub/amazon-dash-sniff /bin/bash
+docker rm -f sejnub/amazon-dash-sniff; docker run --net host -it --env-file /hb-credentials.env sejnub/amazon-dash-sniff /bin/bash
 
 ```
