@@ -11,12 +11,17 @@ import time
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
 
-# TODO: lastpress isnt a global var to the sniff function. It is always {}
 
-# constants
+# Constants
 timespan_threshhold = 15
 
-# global vars
+# The following values must be replaced by the actual values for this use case
+username = "<username>"
+password = "<passwd>"
+url      = '<some url which contains button>'
+
+
+# Global vars
 lastpress = {}
 
 def arp_display(pkt):
@@ -87,10 +92,6 @@ def arp_display(pkt):
 def trigger(button):
   print "Triggered: ", button
   
-  username = "<username>"
-  password = "<passwd>"
-  url = '<some url which contains button>'
-
   request = urllib2.Request(url)
   base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
   request.add_header("Authorization", "Basic %s" % base64string)
