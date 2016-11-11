@@ -89,7 +89,7 @@ def trigger(button):
   
   # The following values must be replaced by the actual values for this use case
   username = "<username>"
-  password = "<passwd>"
+  password = "<password>"
   url      = '<url>'
   
   request = urllib2.Request(url)
