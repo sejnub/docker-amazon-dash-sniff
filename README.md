@@ -29,7 +29,7 @@ docker run --net host -it sejnub/amazon-dash-sniff /bin/bash
 
 To run it for production:
 ```
-docker run --net host -d sejnub/amazon-dash-sniff
+docker run --net host -d --env-file /hb-credentials.env sejnub/amazon-dash-sniff
 ```
 
 ## Push it
