@@ -24,7 +24,7 @@ docker build -t sejnub/amazon-dash-sniff .
 
 To run it for test purposes with attached console:
 ```
-docker run --net host -it sejnub/amazon-dash-sniff /bin/bash
+docker run --net host -it --env-file /hb-credentials.env sejnub/amazon-dash-sniff /bin/bash
 ```
 
 To run it for production:
