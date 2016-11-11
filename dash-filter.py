@@ -6,6 +6,7 @@ import sys
 import base64
 import datetime
 import time
+import os
 
 
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
