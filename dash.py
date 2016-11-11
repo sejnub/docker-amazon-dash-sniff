@@ -60,8 +60,8 @@ def arp_display(pkt):
   else:
     print "Button ", button, " was pressed."
 
-    username = "hbunjes"
-    password = "gffubI00"
+    username = "<username>"
+    password = "<password>"
     url = 'http://192.168.178.31:8083/fhem?cmd=set%20DashButton' + button + '%20press'
 
     request = urllib2.Request(url)
