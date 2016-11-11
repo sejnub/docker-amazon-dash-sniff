@@ -74,9 +74,9 @@ def arp_display(pkt):
       
 
 
-    username = "hbunjes"
-    password = "gffubI00"
-    url = 'http://192.168.178.31:8083/fhem?cmd=set%20DashButton' + button + '%20press'
+    username = "<username>"
+    password = "<passwd>"
+    url = '<some url which contains button>'
 
     request = urllib2.Request(url)
     base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
