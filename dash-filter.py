@@ -60,29 +60,37 @@ def arp_display(pkt):
     sys.stdout.write(';')
     #print " "
     #print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
-  else:
-    # TODO: lastpress isnt a global var to the sniff function. It is always {}
-    if not lastpress.has_key(button):
-      print button, " was never pressed before."
-      print "lastpress: ", lastpress
-    else:
-      thistime = datetime.datetime.now()
+  
+  else: # A relevant button was pressed
+    thistime = datetime.datetime.now()
+    print button, " was pressed now at ", thistime
+    
+    if lastpress.has_key(button):
       lasttime = lastpress[button]
-      lastpress[button] = thistime
-      print button, " lasttime: ", lasttime 
-      print button, " thistime: ", thistime 
+      print button, " was pressed before at ", lasttime
+      timespan = thistime - lasttime
+      print "timespan = ", timespan
+      if timespan > ???:
+        trigger(button)
+    else:
+      print button, " was never pressed before."
+      trigger (button)
+
+    lastpress[button] = thistime
       
+      
+def trigger(button):
+  print "Triggered: ", button
+  
+  username = "<username>"
+  password = "<passwd>"
+  url = '<some url which contains button>'
 
-
-    username = "<username>"
-    password = "<passwd>"
-    url = '<some url which contains button>'
-
-    request = urllib2.Request(url)
-    base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
-    request.add_header("Authorization", "Basic %s" % base64string)
-    response = urllib2.urlopen(request)
-    the_page = response.read()
+  request = urllib2.Request(url)
+  base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
+  request.add_header("Authorization", "Basic %s" % base64string)
+  response = urllib2.urlopen(request)
+  the_page = response.read()
 
 
 print "Running dash-filter.py version 6"
