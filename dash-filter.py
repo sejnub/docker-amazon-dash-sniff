@@ -14,6 +14,9 @@ from scapy.all import *
 
 # Constants
 timespan_threshhold = 15
+username = os.getenv('HB_FHEMWEB_USERNAME', 'unknown')
+password = os.getenv('HB_FHEMWEB_PASSWORD', 'unknown')
+urlbase  = os.getenv('HB_FHEMWEB_URLBASE',  'unknown')
 
 
 # Global vars
@@ -87,10 +90,7 @@ def arp_display(pkt):
 def trigger(button):
   print "Triggered: ", button
   
-  # The following values must be replaced by the actual values for this use case
-  username = "<username>"
-  password = "<password>"
-  url      = '<url>'
+  url = urlbase + '/fhem?cmd=set%20DashButton' + button + '%20press'
   
   request = urllib2.Request(url)
   base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
