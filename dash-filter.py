@@ -90,7 +90,7 @@ def trigger(button):
   # The following values must be replaced by the actual values for this use case
   username = "<username>"
   password = "<passwd>"
-  url      = '<some url which contains button>'
+  url      = '<url>'
   
   request = urllib2.Request(url)
   base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
