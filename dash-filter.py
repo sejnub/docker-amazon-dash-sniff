@@ -109,8 +109,9 @@ def trigger(button):
   the_page = response.read()
 
 
-print "Running dash-filter.py version 6"
+print "Running dash-filter.py version 11"
 print "Waiting for an amazon dash button to register to the network ..."
+print ""
 
 sniff(prn=arp_display, filter="arp", store=0, count=0)
 
