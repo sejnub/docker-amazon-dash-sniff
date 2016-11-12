@@ -72,6 +72,7 @@ def arp_display(pkt):
   
   else: # A relevant button was pressed
     thistime = datetime.datetime.now()
+    print ""
     print button, " was pressed now at ", thistime
     
     if lastpress.has_key(button):
