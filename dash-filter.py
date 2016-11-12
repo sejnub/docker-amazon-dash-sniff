@@ -78,9 +78,13 @@ def arp_display(pkt):
       lasttime = lastpress[button]
       print button, " was pressed before at ", lasttime
       timespan = thistime - lasttime
-      print "timespan = ", timespan
+      print "timespan = ", timespan.total_seconds()
       if timespan.total_seconds() > timespan_threshhold:
         trigger(button)
+      else:
+        print "No further action because timespan is shorter than ", timespan_threshhold, " seconds."
+        
+        
     else:
       print button, " was never pressed before."
       trigger (button)
@@ -89,7 +93,7 @@ def arp_display(pkt):
       
       
 def trigger(button):
-  print "Triggered: ", button
+  print "Making HTTP request for: ", button
   
   url = urlbase + '/fhem?cmd=set%20DashButton' + button + '%20press'
   
