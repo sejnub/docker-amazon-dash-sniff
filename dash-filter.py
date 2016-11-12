@@ -14,7 +14,7 @@ from scapy.all import *
 
 
 # Constants
-timespan_threshhold = 15
+timespan_threshhold = 3
 username = os.getenv('HB_FHEMWEB_USERNAME', 'unknown')
 password = os.getenv('HB_FHEMWEB_PASSWORD', 'unknown')
 urlbase  = os.getenv('HB_FHEMWEB_URLBASE',  'unknown')
