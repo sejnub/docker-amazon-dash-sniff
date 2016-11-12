@@ -54,6 +54,6 @@ docker build -t sejnub/amazon-dash-sniff .
 docker rm -f sejnub/amazon-dash-sniff; docker run --net host -it --env-file /usr/local/etc/hb-credentials.env sejnub/amazon-dash-sniff /bin/bash
 
 
-python /usr/local/bin/dash-filter.py
+python /usr/local/bin/dash.py
 
 ```
