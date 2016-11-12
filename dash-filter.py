@@ -32,6 +32,9 @@ def arp_display(pkt):
         print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         button = 'Ariel1'
 
+      elif pkt[ARP].hwsrc == 'ac:63:be:44:51:b3':
+        button = 'Ariel1'
+
       elif pkt[ARP].hwsrc == 'ac:63:be:1f:e7:fd':
         button = 'Bio1'
 
