@@ -16,7 +16,7 @@ docker run -ti resin/rpi-raspbian:jessie-20160831 /bin/bash
 
 ```
 cd ..
-rm-r docker-amazon-dash-sniff
+rm -rf docker-amazon-dash-sniff
 git clone https://github.com/sejnub/docker-amazon-dash-sniff.git
 cd docker-amazon-dash-sniff 
 docker build -t sejnub/amazon-dash-sniff .
