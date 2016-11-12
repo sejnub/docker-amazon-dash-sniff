@@ -29,6 +29,7 @@ def arp_display(pkt):
     if pkt[ARP].op == 1: #who-has (request)
 
       if   pkt[ARP].hwsrc == 'ac:63:be:44:51:b3':
+        print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         button = 'Ariel1'
 
       elif pkt[ARP].hwsrc == 'ac:63:be:1f:e7:fd':
@@ -73,28 +74,28 @@ def arp_display(pkt):
   else: # A relevant button was pressed
     thistime = datetime.datetime.now()
     print ""
-    print button, " was pressed now at ", thistime
+    print button, "was pressed now at", thistime
     
     if lastpress.has_key(button):
       lasttime = lastpress[button]
-      print button, " was pressed before at ", lasttime
+      print button, "was pressed before at", lasttime
       timespan = thistime - lasttime
-      print "timespan = ", timespan.total_seconds()
+      print "timespan =", timespan.total_seconds()
       if timespan.total_seconds() > timespan_threshhold:
         trigger(button)
       else:
-        print "No further action because timespan is shorter than ", timespan_threshhold, " seconds."
+        print "No further action because timespan is shorter than", timespan_threshhold, "seconds."
         
         
     else:
-      print button, " was never pressed before."
+      print button, "was never pressed before."
       trigger (button)
 
     lastpress[button] = thistime
       
       
 def trigger(button):
-  print "Making HTTP request for: ", button
+  print "Making HTTP request for:", button
   
   url = urlbase + '/fhem?cmd=set%20DashButton' + button + '%20press'
   
