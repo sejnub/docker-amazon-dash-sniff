@@ -15,6 +15,8 @@ from scapy.all import *
 
 # Constants
 timespan_threshhold = 3
+
+# The following environment variables are set by the 'docker run' command via the '--env-file' option
 username = os.getenv('HB_FHEMWEB_USERNAME', 'unknown')
 password = os.getenv('HB_FHEMWEB_PASSWORD', 'unknown')
 urlbase  = os.getenv('HB_FHEMWEB_URLBASE',  'unknown')
@@ -59,7 +61,8 @@ def arp_display(pkt):
       elif pkt[ARP].hwsrc == 'ac:63:be:e3:3c:64':
         button = 'Somat1'
 
-
+      # The following is implemented because I have a device 
+      # that causes a lot of arp traffic and I wanted to log this separately
       elif pkt[ARP].hwsrc == 'f8:1a:67:25:36:3a':
         button = 'strange-device'
       else:
@@ -88,15 +91,14 @@ def arp_display(pkt):
         trigger(button)
       else:
         print "No further action because timespan is shorter than", timespan_threshhold, "seconds."
-        
-        
     else:
       print button, "was never pressed before."
       trigger (button)
 
     lastpress[button] = thistime
       
-      
+# Make an HTTP get request with basic authentication      
+# Yes, this should be a post or a put. But FHEM wants a get.
 def trigger(button):
   print "Making HTTP request for:", button
   
