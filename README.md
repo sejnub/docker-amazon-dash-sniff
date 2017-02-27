@@ -4,6 +4,14 @@ Image on hub.docker: https://hub.docker.com/r/sejnub/amazon-dash-sniff/
 
 This is a Dockerfile for the hack described in https://blog.thesen.eu/aktuellen-dash-button-oder-ariel-etc-von-amazon-jk29lp-mit-dem-raspberry-pi-nutzen-hacken/
 
+
+## Status and rights
+This works stable for me. But the code is **specific for my setup** (buttons and HTTP target). 
+So if you want to use this you have to change the code. 
+
+I claim no rights to this. Feel free to do with it, what you want!
+
+
 ## Prepare rpi
 Prepare rpi as described in http://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/
 
