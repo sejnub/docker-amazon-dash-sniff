@@ -102,7 +102,8 @@ def arp_display(pkt):
 def trigger(button):
   print "Making HTTP request for:", button
   
-  url = urlbase + '/fhem?cmd=set%20DashButton' + button + '%20press'
+  #one of the buttons is named: dashbutton_Kleenex1_dummy
+  url = urlbase + '/fhem?cmd=set%20dashbutton_' + button + '_dummy' + '%20press'
   
   request = urllib2.Request(url)
   base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
