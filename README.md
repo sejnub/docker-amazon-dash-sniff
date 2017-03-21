@@ -34,12 +34,12 @@ docker build -t sejnub/amazon-dash-sniff .
 
 To run it for test purposes with attached console:
 ```
-docker run --net host -it --env-file /usr/local/etc/sejnub-credentials.env --name dash sejnub/amazon-dash-sniff /bin/bash
+docker rm -f dash; docker run --net host -it --env-file /usr/local/etc/sejnub-credentials.env --name dash sejnub/amazon-dash-sniff /bin/bash
 ```
 
 To run it for production:
 ```
-docker run --net host -d --env-file /usr/local/etc/sejnub-credentials.env --name dash sejnub/amazon-dash-sniff
+docker rm -f dash; docker run --net host -d --env-file /usr/local/etc/sejnub-credentials.env --name dash sejnub/amazon-dash-sniff
 ```
 
 ## Push it
