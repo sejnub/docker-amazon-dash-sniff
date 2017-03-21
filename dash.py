@@ -109,6 +109,8 @@ def trigger(button):
   request.add_header("Authorization", "Basic %s" % base64string)
   response = urllib2.urlopen(request)
   the_page = response.read()
+  print "Response: ", the_page
+  print ""
 
 
 print "Running dash-filter.py version 11"
