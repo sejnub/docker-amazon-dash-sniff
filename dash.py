@@ -110,7 +110,8 @@ def trigger(button):
   response = urllib2.urlopen(request)
   the_page = response.read()
   print ""
-  print "Response: ", the_page
+  print "Response:"
+  print the_page
   print ""
 
 
