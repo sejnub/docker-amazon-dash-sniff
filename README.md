@@ -53,14 +53,6 @@ docker push sejnub/amazon-dash-sniff
 ## clips
 
 ```
-cd ..
-rm -rf docker-amazon-dash-sniff
-git clone https://github.com/sejnub/docker-amazon-dash-sniff.git
-cd docker-amazon-dash-sniff 
-docker build -t sejnub/amazon-dash-sniff .
-
-docker rm -f dash; docker run --net host -it --env-file /usr/local/etc/sejnub-credentials.env --name dash sejnub/amazon-dash-sniff /bin/bash
-
 
 python /usr/local/bin/dash.py
 
