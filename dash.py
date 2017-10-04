@@ -14,7 +14,7 @@ from scapy.all import *
 
 
 # Constants
-timespan_threshhold = 30
+timespan_threshhold = 35
 
 # The following environment variables are set by the 'docker run' command via the '--env-file' option
 username = os.getenv('HB_FHEMWEB_USERNAME', 'unknown')
