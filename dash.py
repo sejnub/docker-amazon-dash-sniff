@@ -1,9 +1,9 @@
 import datetime
 import logging
-import urllib
-import urllib2
+#import urllib
+#import urllib2
 import sys
-import base64
+#import base64
 import datetime
 import time
 import os
@@ -100,42 +100,24 @@ def arp_display(pkt):
 
     lastpress[button] = thistime
       
-# Make an HTTP get request with basic authentication      
+
+# Make an HTTP get request
 def trigger(button):
   print "Making HTTP request for:", button
+
+  url = urlbase + button
+  print "p1: url = " + url
+
+ cmd = """ curl -X POST -H "x-ha-access: """ + password + '"' +
+       """      -H "Content-Type: application/json"       """ +
+       """      -d '{"state": "on", "attributes": {"friendly_name": \"""" + button + "\"}}'" +       
+       url + button
+  
+  print "cmd = <<< " + cmd + " >>>"
   
 
-
-  # For home assistant it is
-  # See https://home-assistant.io/components/binary_sensor.http/ for payload
-  url = urlbase + button
-  #url = "http://hassio.internal:8123/api/states/binary_sensor.Honig"
-
-  print "p1: url = " + url
-  values = {"state": "on", "attributes": {"friendly_name": button}}
-  print "p2"
-  data = urllib.urlencode(values)
-  print "p3"
-  req = urllib2.Request(url, data)
-  print "p4"
-  req.add_header('Content-type', 'application/json') # TODO: change "type" to "Type"
-  print "p5"
-  #req.add_header('x-ha-access', "password") # TODO: insert correct password
-  print "p6"
-  response = urllib2.urlopen(req)
-  print "p7"
-  result = response.read()
-  print result
-
-  # # See https://stackoverflow.com/questions/16712541/python-urllib2-post-request
-  # url = 'http://example.com/...'
-  # values = { 'productslug': 'bar','qty': 'bar' }
-  # data = urllib.urlencode(values)
-  # req = urllib2.Request(url, data)
-  # response = urllib2.urlopen(req)
-  # result = response.read()
-  # print result
-
+  result = os.system(cmd)
+  print "result = '" + result + "'"
 
   print ""
   print "Response:"
