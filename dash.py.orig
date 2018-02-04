@@ -16,17 +16,10 @@ from scapy.all import *
 # Constants
 timespan_threshhold = 39
 
-# This is for home assistant
 # The following environment variables are set by the 'docker run' command via the '--env-file' option
-username = os.getenv('HB_hassio_USERNAME', 'unknown')
-password = os.getenv('HB_hassio_PASSWORD', 'unknown')
-urlbase  = http://hassio.internal:8123
-
-# The following was for fhem
-## The following environment variables are set by the 'docker run' command via the '--env-file' option
-#username = os.getenv('HB_FHEMWEB_USERNAME', 'unknown')
-#password = os.getenv('HB_FHEMWEB_PASSWORD', 'unknown')
-#urlbase  = os.getenv('HB_FHEMWEB_URLBASE',  'unknown')
+username = os.getenv('HB_FHEMWEB_USERNAME', 'unknown')
+password = os.getenv('HB_FHEMWEB_PASSWORD', 'unknown')
+urlbase  = os.getenv('HB_FHEMWEB_URLBASE',  'unknown')
 
 
 # Global vars
@@ -104,43 +97,18 @@ def arp_display(pkt):
     lastpress[button] = thistime
       
 # Make an HTTP get request with basic authentication      
+# Yes, this should be a post or a put. But FHEM wants a get.
 def trigger(button):
   print "Making HTTP request for:", button
   
-
-
-  # For home assistant it is
-  url = urlbase + '/api/states/binary_sensor.' + button
-  # See https://home-assistant.io/components/binary_sensor.http/ for payload
-  values = {"state": "on", "attributes": {"friendly_name": button}}
-  data = urllib.urlencode(values)
-  req = urllib2.Request(url, data)
-  req.add_header('Content-Type', 'application/json')
-  req.add_header('x-ha-access', password)
-  response = urllib2.urlopen(req)
-  result = response.read()
-  print result
-
-  # # See https://stackoverflow.com/questions/16712541/python-urllib2-post-request
-  # url = 'http://example.com/...'
-  # values = { 'productslug': 'bar','qty': 'bar' }
-  # data = urllib.urlencode(values)
-  # req = urllib2.Request(url, data)
-  # response = urllib2.urlopen(req)
-  # result = response.read()
-  # print result
-
-
-
-  # For fhem it was
-  # Yes, this should be a post or a put. But FHEM wants a get.
-  #url = urlbase + '/fhem?cmd=set%20dashbutton_' + button + '_dummy' + '%20press'
-  #request = urllib2.Request(url)
-  #base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
-  #request.add_header("Authorization", "Basic %s" % base64string)
-  #response = urllib2.urlopen(request)
-  #the_page = response.read()
+  #one of the buttons is named: dashbutton_Kleenex1_dummy
+  url = urlbase + '/fhem?cmd=set%20dashbutton_' + button + '_dummy' + '%20press'
   
+  request = urllib2.Request(url)
+  base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
+  request.add_header("Authorization", "Basic %s" % base64string)
+  response = urllib2.urlopen(request)
+  the_page = response.read()
   print ""
   print "Response:"
   print the_page
