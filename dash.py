@@ -20,13 +20,7 @@ timespan_threshhold = 39
 # The following environment variables are set by the 'docker run' command via the '--env-file' option
 #username = os.getenv('HB_HASSIO_USERNAME', 'unknown')
 password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
-urlbase  = http://hassio.internal:8123
-
-# The following was for fhem
-## The following environment variables are set by the 'docker run' command via the '--env-file' option
-#username = os.getenv('HB_FHEMWEB_USERNAME', 'unknown')
-#password = os.getenv('HB_FHEMWEB_PASSWORD', 'unknown')
-#urlbase  = os.getenv('HB_FHEMWEB_URLBASE',  'unknown')
+urlbase  = "http://hassio.internal:8123"
 
 
 # Global vars
@@ -131,16 +125,6 @@ def trigger(button):
   # print result
 
 
-
-  # For fhem it was
-  # Yes, this should be a post or a put. But FHEM wants a get.
-  #url = urlbase + '/fhem?cmd=set%20dashbutton_' + button + '_dummy' + '%20press'
-  #request = urllib2.Request(url)
-  #base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
-  #request.add_header("Authorization", "Basic %s" % base64string)
-  #response = urllib2.urlopen(request)
-  #the_page = response.read()
-  
   print ""
   print "Response:"
   print the_page
