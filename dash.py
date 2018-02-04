@@ -18,8 +18,8 @@ timespan_threshhold = 39
 
 # This is for home assistant
 # The following environment variables are set by the 'docker run' command via the '--env-file' option
-#username = os.getenv('HB_hassio_USERNAME', 'unknown')
-password = os.getenv('HB_hassio_api_PASSWORD', 'unknown')
+#username = os.getenv('HB_HASSIO_USERNAME', 'unknown')
+password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
 urlbase  = http://hassio.internal:8123
 
 # The following was for fhem
