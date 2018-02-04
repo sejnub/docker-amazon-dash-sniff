@@ -20,7 +20,7 @@ timespan_threshhold = 39
 # The following environment variables are set by the 'docker run' command via the '--env-file' option
 #username = os.getenv('HB_HASSIO_USERNAME', 'unknown')
 password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
-urlbase  = "http://hassio.internal:8123"
+urlbase  = "http://hassio.internal:8123/api/states/binary_sensor."
 
 
 # Global vars
@@ -31,6 +31,9 @@ def arp_display(pkt):
   if pkt.haslayer(ARP):
     if pkt[ARP].op == 1: # who-has (request)
 
+      if pkt[ARP].hwsrc == '23:45:67:89:01:23':
+        button = 'shouldntexist'
+      
       # <begin section button definitions>
       elif pkt[ARP].hwsrc == 'ac:63:be:44:51:b3':
         button = 'Ariel1'
@@ -104,14 +107,23 @@ def trigger(button):
 
 
   # For home assistant it is
-  url = urlbase + '/api/states/binary_sensor.' + button
   # See https://home-assistant.io/components/binary_sensor.http/ for payload
+  url = urlbase + button
+  #url = "http://hassio.internal:8123/api/states/binary_sensor.Honig"
+
+  print "p1: url = " + url
   values = {"state": "on", "attributes": {"friendly_name": button}}
+  print "p2"
   data = urllib.urlencode(values)
+  print "p3"
   req = urllib2.Request(url, data)
-  req.add_header('Content-Type', 'application/json')
-  req.add_header('x-ha-access', password)
+  print "p4"
+  req.add_header('Content-type', 'application/json') # TODO: change "type" to "Type"
+  print "p5"
+  #req.add_header('x-ha-access', "password") # TODO: insert correct password
+  print "p6"
   response = urllib2.urlopen(req)
+  print "p7"
   result = response.read()
   print result
 
