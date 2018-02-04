@@ -5,7 +5,9 @@ RUN apt-get -qy update && \
                         tcpdump      \
                         nano         \
                         tcpreplay #  nano is only for development. tcpreplay really necessary?
-    
+
+RUN apt-get -qy install curl 
+
 COPY dash.py        /usr/local/bin
 
 CMD ["python", "/usr/local/bin/dash.py"] 
