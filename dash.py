@@ -20,8 +20,8 @@ timespan_threshhold = 39
 # The following environment variables are set by the 'docker run' command via the '--env-file' option
 #username = os.getenv('HB_HASSIO_USERNAME', 'unknown')
 password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
-urlbase  = "http://hassio.internal:8123/api/states/binary_sensor."
-
+#urlbase  = "http://hassio.internal:8123/api/states/binary_sensor."
+urlbase  = "http://hassio.internal:8123/api/events/button_pushed"
 
 # Global vars
 lastpress = {}
@@ -103,13 +103,14 @@ def arp_display(pkt):
 
 # Make an HTTP get request
 def trigger(button):
-  dashbutton = "dash_" + button
+  dashbutton = button # This line was meant to give button a prefix like "dash_". 
   print "Making HTTP request for:", dashbutton
 
-  url = urlbase + dashbutton
+  url = urlbase # + dashbutton
   print "p1: url = " + url
 
-  cmd = """ curl -X POST -H "x-ha-access: """ + password + '"' +  """ -H "Content-Type: application/json"  -d '{"state": "on", "attributes": {"friendly_name": \"""" + dashbutton + "\"}}' " + url
+  data = """'{"state": \"""" + dashbutton + """\", "attributes": {"friendly_name": \"""" + dashbutton + "\"}}'"
+  cmd = """ curl -X POST -H "x-ha-access: """ + password + '"' +  """ -H "Content-Type: application/json"  -d """ + data + " " + url
 
   print "cmd = <<< " + cmd + " >>>"
 
@@ -121,7 +122,7 @@ def trigger(button):
   print ""
 
 
-print "Running dash-filter.py version 11"
+print "Running dash-filter.py version 21"
 print "Waiting for an amazon dash button to register to the network ..."
 print ""
 
