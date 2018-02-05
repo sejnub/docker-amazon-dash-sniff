@@ -36,6 +36,12 @@ To run it for test purposes with attached console:
 ```
 docker rm -f dash; docker run --net host -it --env-file /usr/local/etc/sejnub-credentials.env --name dash sejnub/amazon-dash-sniff /bin/bash
 ```
+and then
+````
+nano   /usr/local/bin/dash.py
+python /usr/local/bin/dash.py
+````
+
 
 To run it for production:
 ```
