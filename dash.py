@@ -108,20 +108,15 @@ def trigger(button):
   url = urlbase + button
   print "p1: url = " + url
 
- cmd = """ curl -X POST -H "x-ha-access: """ + password + '"' +
-       """      -H "Content-Type: application/json"       """ +
-       """      -d '{"state": "on", "attributes": {"friendly_name": \"""" + button + "\"}}'" +       
-       url + button
-  
+  cmd = """ curl -X POST -H "x-ha-access: """ + password + '"' +  """ -H "Content-Type: application/json"  -d '{"state": "on", "attributes": {"friendly_name": \"""" + button + "\"}}' " + url
+
   print "cmd = <<< " + cmd + " >>>"
-  
+
 
   result = os.system(cmd)
-  print "result = '" + result + "'"
 
   print ""
-  print "Response:"
-  print the_page
+  print "result should be 0 and it is '" + str(result) + "'"
   print ""
 
 
