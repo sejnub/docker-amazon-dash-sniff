@@ -103,12 +103,13 @@ def arp_display(pkt):
 
 # Make an HTTP get request
 def trigger(button):
-  print "Making HTTP request for:", button
+  dashbutton = "dash_" + button
+  print "Making HTTP request for:", dashbutton
 
-  url = urlbase + "dash_" + button
+  url = urlbase + dashbutton
   print "p1: url = " + url
 
-  cmd = """ curl -X POST -H "x-ha-access: """ + password + '"' +  """ -H "Content-Type: application/json"  -d '{"state": "on", "attributes": {"friendly_name": \"""" + button + "\"}}' " + url
+  cmd = """ curl -X POST -H "x-ha-access: """ + password + '"' +  """ -H "Content-Type: application/json"  -d '{"state": "on", "attributes": {"friendly_name": \"""" + dashbutton + "\"}}' " + url
 
   print "cmd = <<< " + cmd + " >>>"
 
