@@ -8,6 +8,8 @@ RUN apt-get -qy update && \
 
 RUN apt-get -qy install curl 
 
-COPY dash.py        /usr/local/bin
+COPY dash-hassio.py /usr/local/bin
+COPY dash-test.py   /usr/local/bin
+COPY dash-fhem.py   /usr/local/bin
 
-CMD ["python", "/usr/local/bin/dash.py"] 
+CMD ["python", "/usr/local/bin/dash-hassio.py"] 
