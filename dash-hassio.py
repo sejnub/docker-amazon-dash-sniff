@@ -1,9 +1,9 @@
 import datetime
 import logging
-import urllib
-import urllib2
+#import urllib
+#import urllib2
 import sys
-import base64
+#import base64
 import datetime
 import time
 import os
@@ -16,11 +16,12 @@ from scapy.all import *
 # Constants
 timespan_threshhold = 39
 
+# This is for home assistant
 # The following environment variables are set by the 'docker run' command via the '--env-file' option
-username = os.getenv('HB_FHEMWEB_USERNAME', 'unknown')
-password = os.getenv('HB_FHEMWEB_PASSWORD', 'unknown')
-urlbase  = os.getenv('HB_FHEMWEB_URLBASE',  'unknown')
-
+#username = os.getenv('HB_HASSIO_USERNAME', 'unknown')
+password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
+#urlbase  = "http://hassio.internal:8123/api/states/binary_sensor."
+urlbase  = "http://hassio.internal:8123/api/events/button_pushed"
 
 # Global vars
 lastpress = {}
@@ -30,6 +31,9 @@ def arp_display(pkt):
   if pkt.haslayer(ARP):
     if pkt[ARP].op == 1: # who-has (request)
 
+      if pkt[ARP].hwsrc == '23:45:67:89:01:23':
+        button = 'shouldntexist'
+      
       # <begin section button definitions>
       elif pkt[ARP].hwsrc == 'ac:63:be:44:51:b3':
         button = 'Ariel1'
@@ -96,26 +100,29 @@ def arp_display(pkt):
 
     lastpress[button] = thistime
       
-# Make an HTTP get request with basic authentication      
-# Yes, this should be a post or a put. But FHEM wants a get.
+
+# Make an HTTP get request
 def trigger(button):
-  print "Making HTTP request for:", button
-  
-  #one of the buttons is named: dashbutton_Kleenex1_dummy
-  url = urlbase + '/fhem?cmd=set%20dashbutton_' + button + '_dummy' + '%20press'
-  
-  request = urllib2.Request(url)
-  base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
-  request.add_header("Authorization", "Basic %s" % base64string)
-  response = urllib2.urlopen(request)
-  the_page = response.read()
+  dashbutton = button # This line was meant to give button a prefix like "dash_". 
+  print "Making HTTP request for:", dashbutton
+
+  url = urlbase # + dashbutton
+  print "p1: url = " + url
+
+  data = """'{"state": \"""" + dashbutton + """\", "attributes": {"friendly_name": \"""" + dashbutton + "\"}}'"
+  cmd = """ curl -X POST -H "x-ha-access: """ + password + '"' +  """ -H "Content-Type: application/json"  -d """ + data + " " + url
+
+  print "cmd = <<< " + cmd + " >>>"
+
+
+  result = os.system(cmd)
+
   print ""
-  print "Response:"
-  print the_page
+  print "result should be 0 and it is '" + str(result) + "'"
   print ""
 
 
-print "Running dash-filter.py version 11"
+print "Running dash-filter.py version 21"
 print "Waiting for an amazon dash button to register to the network ..."
 print ""
 
