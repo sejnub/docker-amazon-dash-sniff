@@ -25,7 +25,8 @@ def trigger(button):
          """ }' """
 
 
-  cmd = """ curl -X POST -H "x-ha-access: """ + password + '"' +  """ -H "Content-Type: application/json"  -d """ + $
+  cmd = """ curl -X POST -H "x-ha-access: """ + password + '"' +  """ -H "Content-Type: application/json"  -d """ + data + " " + url
+  
 
   print "cmd = <<< " + cmd + " >>>"
 
