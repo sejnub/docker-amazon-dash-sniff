@@ -24,6 +24,15 @@ def trigger(button):
          """   {"button": \"""" + dashbutton + """\"} """    + \
          """ }' """
 
+  data1 = """ '{{ "state": true, "attributes": {{"button": "{}"}}  }}' """
+  print "data1 = <<< " + data1 + " >>>"
+  data2 = data1.format("true")
+  print "data2 = <<< " + data2 + " >>>"
+  cmd1  = """ curl -X POST -H "x-ha-access: {}" -H "Content-Type: application/json"  -d {} {} """
+  print "cmd1 = <<< " + cmd1 + " >>>"
+  cmd2  = cmd1.format(password, data2, url)
+  print "cmd2 = <<< " + cmd2 + " >>>"
+  
 
   cmd = """ curl -X POST -H "x-ha-access: """ + password + '"' +  """ -H "Content-Type: application/json"  -d """ + data + " " + url
   
