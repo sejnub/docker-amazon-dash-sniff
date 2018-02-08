@@ -21,7 +21,7 @@ timespan_threshhold = 39
 #username = os.getenv('HB_HASSIO_USERNAME', 'unknown')
 password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
 #urlbase  = "http://hassio.internal:8123/api/states/binary_sensor."
-urlbase  = "http://hassio.internal:8123/api/events/button_pushed"
+urlbase  = "http://hassio.internal:8123/api/events/button-pushed"
 
 # Global vars
 lastpress = {}

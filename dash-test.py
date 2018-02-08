@@ -9,7 +9,7 @@ import time
 import os
 
 
-urlbase  = "http://hassio.internal:8123/api/events/button_pushed"
+urlbase  = "http://hassio.internal:8123/api/events/button-pushed"
 password = "password"
 
 # Make an HTTP get request
