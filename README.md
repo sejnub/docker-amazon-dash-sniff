@@ -38,8 +38,12 @@ docker rm -f dash; docker run --net host -it --env-file /usr/local/etc/sejnub-cr
 ```
 and then
 ````
+nano   /usr/local/bin/dash-test.py
+python /usr/local/bin/dash-test.py
+
 nano   /usr/local/bin/dash.py
 python /usr/local/bin/dash.py
+
 ````
 
 
