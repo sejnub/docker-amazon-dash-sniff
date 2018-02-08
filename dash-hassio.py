@@ -96,29 +96,29 @@ def arp_display(pkt):
         print "No further action because timespan is shorter than", timespan_threshhold, "seconds."
     else:
       print button, "was never pressed before."
-      trigger (button)
+      trigger (urlbase, button)
 
     lastpress[button] = thistime
       
 
 # Make an HTTP get request
-def trigger(button):
-  dashbutton = button # This line was meant to give button a prefix like "dash_". 
+def trigger(url, button):
   print "Making HTTP request for:", dashbutton
 
-  url = urlbase # + dashbutton
   print "p1: url = " + url
 
-  data = """'{"state": \"""" + dashbutton + """\", "attributes": {"friendly_name": \"""" + dashbutton + "\"}}'"
-  cmd = """ curl -X POST -H "x-ha-access: """ + password + '"' +  """ -H "Content-Type: application/json"  -d """ + data + " " + url
-
+  data = """ '{{ "state": true, "attributes": {{"button": "{}"}}  }}' """.format(button)
+  
+  cmd_pre  = """ curl -X POST -H "x-ha-access: {}" -H "Content-Type: application/json"  -d {} {} """
+  print "cmd_pre = <<< " + cmd_pre + " >>>"
+  cmd  = cmd_pre.format(password, data, url)
   print "cmd = <<< " + cmd + " >>>"
 
-
-  result = os.system(cmd)
-
   print ""
-  print "result should be 0 and it is '" + str(result) + "'"
+  print "The next line is the servers returned payload"
+  result = os.system(cmd)
+  print ""
+  print "Result of OS command should be 0 and it is '" + str(result) + "'"
   print ""
 
 
