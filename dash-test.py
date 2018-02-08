@@ -32,21 +32,21 @@ def trigger(button):
   print "cmd1 = <<< " + cmd1 + " >>>"
   cmd2  = cmd1.format(password, data2, url)
   print "cmd2 = <<< " + cmd2 + " >>>"
-  
 
   cmd = """ curl -X POST -H "x-ha-access: """ + password + '"' +  """ -H "Content-Type: application/json"  -d """ + data + " " + url
-  
 
   print "cmd = <<< " + cmd + " >>>"
 
-
+  print "The next line is the servers returned payload"
   result = os.system(cmd)
-
   print ""
-  print "result should be 0 and it is '" + str(result) + "'"
+  print "Result of OS command should be 0 and it is '" + str(result) + "'"
   print ""
 
 
 trigger("Caffee1")
 
 # eof
+
+
+
