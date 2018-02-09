@@ -29,31 +29,31 @@ def arp_display(pkt):
       
       # <begin section button definitions>
       elif pkt[ARP].hwsrc == 'ac:63:be:44:51:b3':
-        button = 'Ariel1'
+        button = 'ariel1'
 
       elif pkt[ARP].hwsrc == 'ac:63:be:1f:e7:fd':
-        button = 'Bio1'
+        button = 'bio1'
 
       elif pkt[ARP].hwsrc == '50:f5:da:07:64:71':
-        button = 'Bio2'
+        button = 'bio2'
 
       elif pkt[ARP].hwsrc == 'ac:63:be:a3:5c:03':
-        button = 'Caffe1'
+        button = 'caffe1'
 
       elif pkt[ARP].hwsrc == '50:f5:da:de:d2:82':
-        button = 'Finish1'
+        button = 'finish1'
 
       elif pkt[ARP].hwsrc == 'ac:63:be:72:fa:13':
-        button = 'Finish2'
+        button = 'finish2'
 
       elif pkt[ARP].hwsrc == 'ac:63:be:17:1e:87':
-        button = 'Kleenex1'
+        button = 'kleenex1'
 
       elif pkt[ARP].hwsrc == 'ac:63:be:b8:17:39':
-        button = 'Persil1'
+        button = 'persil1'
 
       elif pkt[ARP].hwsrc == 'ac:63:be:e3:3c:64':
-        button = 'Somat1'
+        button = 'somat1'
 
       # <end section button definitions>
 
@@ -84,19 +84,37 @@ def arp_display(pkt):
       timespan = thistime - lasttime
       print ("timespan =", timespan.total_seconds())
       if timespan.total_seconds() > timespan_threshhold:
-        trigger(button)
+        trigger_state(button)
       else:
         print ("No further action because timespan is shorter than", timespan_threshhold, "seconds.")
     else:
       print (button, "was never pressed before.")
-      trigger (button)
+      trigger_state (button)
 
     lastpress[button] = thistime
 
 
+# Version for: home assistant / http post / state
+def trigger_state(button):
+
+  # The following environment variables are set by the 'docker run' command via the '--env-file' option
+  password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
+  data     = """ '{{ "state": "on", "attributes": {{"button": "{}"}}  }}' """.format(button)
+  
+  
+  
+  # post tequest to /api/states/<entity_id> 
+  # e.g. entity: sensor.dashbutton_caffe1
+  url      = "http://hassio.internal:8123/api/states/sensor.dashbutton_{}".format(button)
+
+  print ("Making HTTP request for:", button)
+  print ("p1: url = " + url)
+
+  curl(password, data, url)  
+
 
 # Version for: home assistant / http post / event
-def trigger(button):
+def trigger_event(button):
 
   # The following environment variables are set by the 'docker run' command via the '--env-file' option
   password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
@@ -119,6 +137,7 @@ def curl(password, data, url):
   print ("")
   print ("Result of OS command should be 0 and it is '" + str(result) + "'")
   print ("")
+
 
 
 
