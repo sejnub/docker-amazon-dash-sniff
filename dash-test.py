@@ -55,7 +55,9 @@ def curl(password, data, url):
 
 
 trigger_state("ariel1")
-#trigger_event("Caffee1")
+trigger_state("bio1")
+trigger_state("bio2")
+#trigger_event("caffee1")
 
 # eof
 
