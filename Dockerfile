@@ -4,9 +4,9 @@ RUN apt-get -qy update && \
     apt-get -qy install python-scapy \
                         tcpdump      \
                         nano         \
-                        tcpreplay    \ #  nano is only for development. tcpreplay really necessary?
-                        python3-tz
-                        
+                        python3-tz   \
+                        tcpreplay    #  nano is only for development. tcpreplay really necessary?
+
 RUN apt-get -qy install curl 
 
 COPY dash-hassio.py /usr/local/bin
