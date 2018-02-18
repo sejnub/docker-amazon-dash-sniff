@@ -114,15 +114,15 @@ def trigger_state(button):
 # https://home-assistant.io/developers/rest_api
 # Version for: home assistant / http post / event
 def trigger_event(button):
-
   # The following environment variables are set by the 'docker run' command via the '--env-file' option
-  data     = """ '{{ "state": true, "attributes": {{"button": "{}"}}  }}' """.format(button)
   url      = "http://hassio.internal:8123/api/events/button-pushed"
+  data     = """ '{{ "state": true, "attributes": {{"button": "{}"}}  }}' """.format(button)
 
   print ("Making HTTP request for:", button)
   print ("p1: url = " + url)
 
   curl(data, url)  
+
 
 # https://home-assistant.io/developers/rest_api/#post-apiservicesltdomainltservice
 # Version for: home assistant / http post / service
@@ -131,8 +131,19 @@ def trigger_event(button):
 def trigger_service(button):
 
   # The following environment variables are set by the 'docker run' command via the '--env-file' option
-  data     = """ '{{ "entity_id": "input_boolean.dashbutton_{}" }}' """.format(button)
+  url      = "http://hassio.internal:8123/api/services/input_label/set_value"
+  data     = """ '{{ "entity_id": "input_boolean.dashbutton_{}", "value": "{}" }}' """.format(button, datetime.datetime.now())
+
+  print ("Making HTTP request for:", button)
+  print ("p1: url = " + url)
+
+  curl(data, url)  
+
+def trigger_service_1(button):
+
+  # The following environment variables are set by the 'docker run' command via the '--env-file' option
   url      = "http://hassio.internal:8123/api/services/input_boolean/turn_on"
+  data     = """ '{{ "entity_id": "input_boolean.dashbutton_{}" }}' """.format(button)
 
   print ("Making HTTP request for:", button)
   print ("p1: url = " + url)
