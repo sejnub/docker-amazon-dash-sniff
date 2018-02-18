@@ -84,11 +84,12 @@ def arp_display(pkt):
       timespan = thistime - lasttime
       print ("timespan =", timespan.total_seconds())
       if timespan.total_seconds() > timespan_threshhold:
+        print (button, "Was pressed before, but long ago. action!")
         trigger(button)
       else:
         print ("No further action because timespan is shorter than", timespan_threshhold, "seconds.")
     else:
-      print (button, "was never pressed before.")
+      print (button, "Was never pressed before. action!")
       trigger(button)
 
     lastpress[button] = thistime
