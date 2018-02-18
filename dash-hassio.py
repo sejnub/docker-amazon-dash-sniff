@@ -84,12 +84,12 @@ def arp_display(pkt):
       timespan = thistime - lasttime
       print ("timespan =", timespan.total_seconds())
       if timespan.total_seconds() > timespan_threshhold:
-        trigger_state(button)
+        trigger(button)
       else:
         print ("No further action because timespan is shorter than", timespan_threshhold, "seconds.")
     else:
       print (button, "was never pressed before.")
-      trigger_service (button)
+      trigger(button)
 
     lastpress[button] = thistime
 
@@ -125,7 +125,7 @@ def trigger_event(button):
 # https://home-assistant.io/developers/rest_api/#post-apiservicesltdomainltservice
 # Version for: home assistant / http post / service
 # POST /api/services/<domain>/<service>
-def trigger_service(button):
+def trigger(button):
   # The following environment variables are set by the 'docker run' command via the '--env-file' option
   url      = "http://hassio.internal:8123/api/services/input_label/set_value"
   data     = """ '{{ "entity_id": "input_label.dashbutton_{}", "value": "{}" }}' """.format(button, datetime.datetime.now())
