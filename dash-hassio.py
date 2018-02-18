@@ -89,19 +89,17 @@ def arp_display(pkt):
         print ("No further action because timespan is shorter than", timespan_threshhold, "seconds.")
     else:
       print (button, "was never pressed before.")
-      trigger_state (button)
+      trigger_service (button)
 
     lastpress[button] = thistime
 
 
+# https://home-assistant.io/developers/rest_api
 # Version for: home assistant / http post / state
 def trigger_state(button):
 
   # The following environment variables are set by the 'docker run' command via the '--env-file' option
-  password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
   data     = """ '{{ "state": "on", "attributes": {{"button": "{}"}}  }}' """.format(button)
-  
-  
   
   # post tequest to /api/states/<entity_id> 
   # e.g. entity: sensor.dashbutton_caffe1
@@ -110,25 +108,41 @@ def trigger_state(button):
   print ("Making HTTP request for:", button)
   print ("p1: url = " + url)
 
-  curl(password, data, url)  
+  curl(data, url)  
 
 
+# https://home-assistant.io/developers/rest_api
 # Version for: home assistant / http post / event
 def trigger_event(button):
 
   # The following environment variables are set by the 'docker run' command via the '--env-file' option
-  password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
   data     = """ '{{ "state": true, "attributes": {{"button": "{}"}}  }}' """.format(button)
   url      = "http://hassio.internal:8123/api/events/button-pushed"
 
   print ("Making HTTP request for:", button)
   print ("p1: url = " + url)
 
-  curl(password, data, url)  
+  curl(data, url)  
+
+# https://home-assistant.io/developers/rest_api/#post-apiservicesltdomainltservice
+# Version for: home assistant / http post / service
+# POST /api/services/<domain>/<service>
+
+def trigger_service(button):
+
+  # The following environment variables are set by the 'docker run' command via the '--env-file' option
+  data     = """ '{{ "entity_id": "input_boolean.dashbutton_{}" }}' """.format(button)
+  url      = "http://hassio.internal:8123/api/services/input_boolean/turn_on"
+
+  print ("Making HTTP request for:", button)
+  print ("p1: url = " + url)
+
+  curl(data, url)  
 
 
 
-def curl(password, data, url):
+def curl(data, url):
+  password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
   cmd = """ curl -X POST -H "x-ha-access: {}" -H "Content-Type: application/json"  -d {} {} """.format(password, data, url)
   print ("cmd = <<< " + cmd + " >>>")
   print ("")
@@ -137,8 +151,6 @@ def curl(password, data, url):
   print ("")
   print ("Result of OS command should be 0 and it is '" + str(result) + "'")
   print ("")
-
-
 
 
 
