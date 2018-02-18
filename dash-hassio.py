@@ -128,7 +128,7 @@ def trigger_event(button):
 def trigger_service(button):
   # The following environment variables are set by the 'docker run' command via the '--env-file' option
   url      = "http://hassio.internal:8123/api/services/input_label/set_value"
-  data     = """ '{{ "entity_id": "input_boolean.dashbutton_{}", "value": "{}" }}' """.format(button, datetime.datetime.now())
+  data     = """ '{{ "entity_id": "input_label.dashbutton_{}", "value": "{}" }}' """.format(button, datetime.datetime.now())
   print ("Making HTTP request for:", button)
   print ("p1: url = " + url)
   curl(data, url)  
