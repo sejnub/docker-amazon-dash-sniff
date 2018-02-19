@@ -8,8 +8,7 @@ import datetime
 import time
 import os
 #import pytz
-
-from datetime import timezone
+#from datetime import timezone
 
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
