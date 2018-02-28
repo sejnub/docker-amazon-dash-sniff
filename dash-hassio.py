@@ -15,8 +15,15 @@ from scapy.all import *
 
 
 # Constants and global vars
-timespan_threshhold = 39
-lastpress           = {}
+timespan_threshhold  = 39
+lastpress            = {}
+heartbeat_threshhold = 5
+
+
+one_day = datetime.timedelta(days=1)
+heartbeat_lasttime = datetime.datetime.now() - one_day
+
+
 
 def arp_display(pkt):
   button = 'no-arp-op-1'
@@ -65,6 +72,14 @@ def arp_display(pkt):
       else:
         button = 'unknown'
 
+  thistime = datetime.datetime.now()
+  heartbeat_timespan = thistime - heartbeat_lasttime
+  print ("heartbeat_timespan =", heartbeat_timespan.total_seconds())
+  if heartbeat_timespan.total_seconds() > heartbeat_threshhold:
+    print("I am sendining a heartbeat.")
+    trigger_heartbeat(thistime)
+    heartbeat_lasttime = thistime
+
   if button == 'no-arp-op-1':
     sys.stdout.write('.')
   elif button == 'strange-device':
@@ -75,7 +90,6 @@ def arp_display(pkt):
     #print "ARP Probe from unknown device: " + pkt[ARP].hwsrc
   
   else: # A relevant button was pressed
-    thistime = datetime.datetime.now()
     print ("")
     print (button, "was pressed now at", thistime)
     
@@ -94,6 +108,20 @@ def arp_display(pkt):
       trigger(button)
 
     lastpress[button] = thistime
+
+
+# https://home-assistant.io/developers/rest_api/#post-apiservicesltdomainltservice
+# Version for: home assistant / http post / service
+# POST /api/services/<domain>/<service>
+def trigger_heartbeat(thistime):
+  # The following environment variables are set by the 'docker run' command via the '--env-file' option
+  url      = "http://hassio.internal:8123/api/services/input_label/set_value"
+  # TODO: Convert to localtime in next line
+  data     = """ '{{ "entity_id": "input_label.dashbutton_heartbeat", "value": "{:%m-%d %H:%M:%S}Z" }}' """.format(thistime)
+  print ("Making HTTP request for heartbeat")
+  print ("p2: url = " + url)
+  curl(data, url)  
+
 
 
 # https://home-assistant.io/developers/rest_api
