@@ -23,9 +23,15 @@ heartbeat_threshhold = 5
 one_day = datetime.timedelta(days=1)
 heartbeat_lasttime = datetime.datetime.now() - one_day
 
+print ("p3: heartbeat_lasttime: {}".format(heartbeat_lasttime))
 
 
 def arp_display(pkt):
+  global timespan_threshhold 
+  global lastpress           
+  global heartbeat_threshhold
+  global heartbeat_lasttime 
+
   button = 'no-arp-op-1'
   if pkt.haslayer(ARP):
     if pkt[ARP].op == 1: # who-has (request)
@@ -72,10 +78,14 @@ def arp_display(pkt):
       else:
         button = 'unknown'
 
+  #print ("p4: heartbeat_lasttime: {}".format(heartbeat_lasttime))
+  #print ("p5: timespan_threshhold: {}".format(timespan_threshhold))
+
   thistime = datetime.datetime.now()
   heartbeat_timespan = thistime - heartbeat_lasttime
-  print ("heartbeat_timespan =", heartbeat_timespan.total_seconds())
+
   if heartbeat_timespan.total_seconds() > heartbeat_threshhold:
+    print("")
     print("I am sendining a heartbeat.")
     trigger_heartbeat(thistime)
     heartbeat_lasttime = thistime
@@ -179,7 +189,7 @@ def curl(data, url):
   cmd = """ curl -X POST -H "x-ha-access: {}" -H "Content-Type: application/json"  -d {} {} """.format(password, data, url)
   print ("cmd = <<< " + cmd + " >>>")
   print ("")
-  print ("The next line is the servers returned payload")
+  print ("The next line is the server's returned payload")
   result = os.system(cmd)
   print ("")
   print ("Result of OS command should be 0 and it is '" + str(result) + "'")
@@ -187,7 +197,7 @@ def curl(data, url):
 
 
 
-print ("Running dash-filter.py version 21")
+print ("Running dash-filter.py version 22")
 print ("Waiting for an amazon dash button to register to the network ...")
 print ("")
 
