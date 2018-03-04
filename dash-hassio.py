@@ -133,6 +133,18 @@ def trigger_heartbeat(thistime):
   curl(data, url)  
 
 
+# https://home-assistant.io/developers/rest_api/#post-apiservicesltdomainltservice
+# Version for: home assistant / http post / service
+# POST /api/services/<domain>/<service>
+def trigger(button):
+  # The following environment variables are set by the 'docker run' command via the '--env-file' option
+  url      = "http://hassio.internal:8123/api/services/input_label/set_value"
+  # TODO: Convert to localtime in next line
+  data     = """ '{{ "entity_id": "input_label.dashbutton_{}", "value": "{:%m-%d %H:%M:%S}Z" }}' """.format(button, datetime.datetime.now())
+  print ("Making HTTP request for:", button)
+  print ("p1: url = " + url)
+  curl(data, url)  
+
 
 # https://home-assistant.io/developers/rest_api
 # Version for: home assistant / http post / state
@@ -161,18 +173,6 @@ def trigger_event(button):
   print ("p1: url = " + url)
   curl(data, url)  
 
-
-# https://home-assistant.io/developers/rest_api/#post-apiservicesltdomainltservice
-# Version for: home assistant / http post / service
-# POST /api/services/<domain>/<service>
-def trigger(button):
-  # The following environment variables are set by the 'docker run' command via the '--env-file' option
-  url      = "http://hassio.internal:8123/api/services/input_label/set_value"
-  # TODO: Convert to localtime in next line
-  data     = """ '{{ "entity_id": "input_label.dashbutton_{}", "value": "{:%m-%d %H:%M:%S}Z" }}' """.format(button, datetime.datetime.now())
-  print ("Making HTTP request for:", button)
-  print ("p1: url = " + url)
-  curl(data, url)  
 
 def trigger_service_1(button):
   # The following environment variables are set by the 'docker run' command via the '--env-file' option
