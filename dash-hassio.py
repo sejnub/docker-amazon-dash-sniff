@@ -127,7 +127,7 @@ def trigger_heartbeat(thistime):
   # The following environment variables are set by the 'docker run' command via the '--env-file' option
   url      = "http://hassio.internal:8123/api/services/input_label/set_value"
   # TODO: Convert to localtime in next line
-  data     = """ '{{ "entity_id": "input_label.dashbutton_heartbeat", "value": "{:%m-%d %H:%M:%S}Z" }}' """.format(thistime)
+  data     = """ '{{ "entity_id": "input_label.dashbutton_heartbeat", "value": "{:%Y-%m-%dT%H:%M:%S}Z" }}' """.format(thistime)
   print ("Making HTTP request for heartbeat")
   print ("p2: url = " + url)
   curl(data, url)  
