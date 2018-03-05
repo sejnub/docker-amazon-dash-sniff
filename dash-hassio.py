@@ -17,7 +17,7 @@ from scapy.all import *
 # Constants and global vars
 timespan_threshhold  = 39
 lastpress            = {}
-heartbeat_threshhold = 5
+heartbeat_threshhold = 90
 
 
 one_day = datetime.timedelta(days=1)
