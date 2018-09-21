@@ -13,4 +13,4 @@ COPY dash-hassio.py /usr/local/bin
 COPY dash-test.py   /usr/local/bin
 COPY dash-fhem.py   /usr/local/bin
 
-CMD ["python", "/usr/local/bin/dash-hassio.py"] 
+CMD ["python3", "/usr/local/bin/dash-hassio.py"] 
