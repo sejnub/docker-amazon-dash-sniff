@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:jessie-20160831  
+FROM resin/rpi-raspbian:stretch-20180815  
 
 RUN apt-get -qy update && \
     apt-get -qy install python-scapy \
