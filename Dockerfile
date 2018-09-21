@@ -1,9 +1,10 @@
 FROM resin/rpi-raspbian:stretch-20180815  
 
 RUN apt-get -qy update && \
-    apt-get -qy install python-scapy \
-                        tcpdump      \
-                        nano         \
+    apt-get -qy install python3       \
+                        python3-scapy \
+                        tcpdump       \
+                        nano          \
                         tcpreplay #  nano is only for development. tcpreplay really necessary?
 
 RUN apt-get -qy install curl 
