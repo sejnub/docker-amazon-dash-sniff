@@ -182,7 +182,6 @@ def trigger_service_1(button):
   print ("p1: url = " + url)
   curl(data, url)  
 
--H 'Authorization: Bearer ABCDEFGH'
 
 def curl(data, url):
   #password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
