@@ -182,11 +182,13 @@ def trigger_service_1(button):
   print ("p1: url = " + url)
   curl(data, url)  
 
-
+-H 'Authorization: Bearer ABCDEFGH'
 
 def curl(data, url):
-  password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
-  cmd = """ curl -X POST -H "x-ha-access: {}" -H "Content-Type: application/json"  -d {} {} """.format(password, data, url)
+  #password = os.getenv('HB_HASSIO_API_PASSWORD', 'unknown')
+  #cmd = """ curl -X POST -H "x-ha-access: {}" -H "Content-Type: application/json"  -d {} {} """.format(password, data, url)
+  long_lived_token_for_dash_sniff = os.getenv('HB_HASSIO_LONG_LIVED_TOKEN_FOR_DASH_SNIFF', 'unknown')
+  cmd = """ curl -X POST -H "Authorization: Bearer {}" -H "Content-Type: application/json"  -d {} {} """.format(long_lived_token_for_dash_sniff, data, url)
   print ("cmd = <<< " + cmd + " >>>")
   print ("")
   print ("The next line is the server's returned payload")
